@@ -9,139 +9,94 @@ defined('_JEXEC') or die;
 jimport('joomla.plugin.plugin');
 
 /**
- * GetGitHub Content Plugin
+ * Socialize-me Content Plugin
  *
  * @since		1.6
  */
-class plgContentGetgithubcode extends JPlugin
+class plgContentSocializeme extends JPlugin
 {
+	
+    
 	/**
-	 * Example prepare content method
+	 * Example before display content method
 	 *
-	 * Method is called by the view
+	 * Method is called by the view and the results are imploded and displayed in a placeholder
 	 *
-	 * @param	string          The context of the content being passed to the plugin.
-	 * @param	object          The content object.  Note $article->text is also available
-	 * @param	object          The content params
+	 * @param	string		The context for the content passed to the plugin.
+	 * @param	object		The content object.  Note $article->text is also available
+	 * @param	object		The content params
 	 * @param	int		The 'page' number
+	 * @return	string
 	 * @since	1.6
 	 */
-	public function onContentPrepare($context, &$article, &$params, $limitstart)
-	{
-		$app = JFactory::getApplication();
-                
-                // simple performance check to determine whether bot should process further
-                $tagname = $this->get('tagname', 'github');
-		if (strpos($article->text, $tagname) === false) {
-			return true;
-		}
-                
-		// expression to search
-                // {github}https://raw.github.com/example...{/github}
-                // @todo: rewrite to make able to ask start and end lines
-                $regex		= '~{'.$tagname.'}(.*?){/'.$tagname.'}~i'; 
-		$matches	= array();
-
-		// find all instances of plugin and put in $matches
-		preg_match_all($regex, $article->text, $matches, PREG_SET_ORDER);
-
-		foreach ($matches as $match) {
-			// $match[0] is full pattern match, $match[1] is the url
-			$code = $this->_getGithubCode($match[1]);
-			// We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
-			$article->text = preg_replace("|$match[0]|", $code, $article->text, 1);
-		}
-                return '';
-	}
-        
-        /* Function to get get and change the githubcode
-         * @author      Emerson Rocha Luiz
-         * @var         string          $url: the url to get. Must be RAW url!
-         * @var         int             $start: line to start to show
-         * @var         int             $end: last line to show
-         * @return      string          $github: the final github code to show
-         */
-        
-        protected function _getGithubCode($url, $start = FALSE, $end = FALSE){
-            //Get Page
-            $page = $this->_getUrlContents($url, FALSE);
+	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart)
+	{	
             
-            //Convert linebreaks
-            $page = $this->_Unix2Dos($page);
+            //$article->text .= 'TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!';
+            //$article->introtext .= 'TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!TO VIVO!!!!';
+            //print_r($article);die();
             
-            //Get only desired lines
-            if($start !== FALSE || $end !== FALSE){
-                $page = $this->_getStringLines($page, $start, $end);
-            }
-            //Clean up special chars
-            $github = htmlspecialchars($page);
+            $article->text .= $this->_getSocializeme();
             
-            //Get start and end tags and apply
-            $tagstart = $this->params->get('tagstart', '<pre>');
-            $tagstart = str_replace('&lt;', '<', $tagstart);
-            $tagstart = str_replace('&gt;', '>', $tagstart);
-            $tagsend  = $this->params->get('tagend', '</pre>');
-            $tagsend  = str_replace('&lt;', '<', $tagsend);
-            $tagsend  = str_replace('&gt;', '>', $tagsend);
-            $github   = $tagstart . $github . $tagsend;
+            return;
             
-            return $github;
-        }        
-        
-        /*
-         * Return contents of url
-         * @author      Emerson Rocha Luiz
-         * @var         string      $url
-         * @var         string      $certificate path to certificate if is https URL
-         * @return      string
-         */
-        protected function _getUrlContents($url, $certificate = FALSE){
-            $ch = curl_init(); //Inicializar a sessao           
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//Retorne os dados em vez de imprimir em tela
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $certificate);//Check certificate if is SSL, default FALSE
-            curl_setopt($ch, CURLOPT_URL, $url);//Setar URL
-            $content = curl_exec($ch);//Execute
-            curl_close($ch);//Feche          
-            
-            return $content;
         }
         
-        /* Return just lines betwen betwen start and end lines
-         * @author      Emerson Rocha Luiz
-         * @var         string          $string: the string to edit
-         * @var         int             $start: initial line
-         * @var         int             $end: end line
-         * @return      string
+        /* 
+         * Function to build the Socialize-me html output
+         * @return      String      HTML result for add to article
          */
-        protected function _getStringLines($string, $start, $end){
-
-            $stringArray = explode(PHP_EOL, $string);
-            $nLines = count($stringArray)-1;
-
-            //Handle a few errors
-            if( $end < $start || $end > $nLines){
-                //return FALSE;
+        protected function _getSocializeme(){
+            $socializeme = '';
+            
+            $socializeme .= '<div style="clear:both;">';
+            $socializeme .= 'Socialize';
+            
+            if( $this->params->get('showfacebooklike',1) ){
+                $socializeme .= $this->_getFacebookLike();
             }
-
-            $result = '';
-            for( $i=($start-1); $i<=$end ; $i++ ){
-                $result .= $stringArray[$i] . PHP_EOL;
-            }    
-            return $result;    
+            if( $this->params->get('showfacebooklike',1) ){
+                $socializeme .= $this->_getGooglePlus();;
+            }
+            if( $this->params->get('showfacebooklike',1) ){
+                $socializeme .= $this->_getTwitterTwitterButton();
+            }
+            $socializeme .= '</div>';
+            
+            return $socializeme;
+            
         }
         
-        /* Convert unix linebreaks to windows line breaks
-         * @author      Emerson Rocha Luiz
-         * @var         string          $string: the string to edit
-         * @return      string          $newstring
+        /* 
+         * Function to build the Facebook Like html output
+         * @return      String      HTML result for add to article
          */
-        protected function _Unix2Dos($string){
-            if (strpos($string, "\n") === false) {
-                //$newstring = false;
-                $newstring = $string;				
-            } else {
-                $newstring = str_replace("\n", "\r\n", $string); 				 
-            }
-            return $newstring;
+        protected function _getFacebookLike(){
+            $facebookLike = '<div style="margin-left: 10px; width: 47px; height :60px; float: left;"><iframe src="http://www.facebook.com/plugins/like.php?locale=en_US&amp;href=http%3A%2F%2Fwww.fititnt.org%2Flar-doce-lar%2Fparada-tecnica.html&amp;layout=box_count&amp;show_faces=true&amp;action=like&amp;colorscheme=light" style="border:none; overflow:hidden; width: 47px; height :60px;"></iframe></div>';
+           
+            return $facebookLike;
+            
+        }
+        
+        /* 
+         * Function to build the GooglePlus html output
+         * @return      String      HTML result for add to article
+         */
+        protected function _getGooglePlus(){
+            $googleplus = '<div style="width: 60px !important; float: left; margin-left: 10px; border: none;"><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><div class="g-plusone" data-size="tall" data-count="true"></div></div>';
+            
+            return $googleplus;
+            
+        }
+        
+        /* 
+         * Function to build the TwitterButton html output
+         * @return      String      HTML result for add to article
+         */
+        protected function _getTwitterTwitterButton(){
+            $twitterbutton = '<div style="width: 55px !important; float: left;"><a href="http://twitter.com/share" class="twitter-share-button" style="width: 55px;" data-url="http://www.fititnt.org/lar-doce-lar/parada-tecnica.html" data-count="vertical" data-via="fititnt">Twitter</a><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script></div>';
+            
+            return $twitterbutton;
+            
         }
 }
