@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content" method="upgrade">
+	<name>PLG_SOCIALIZEME</name>
+	<author>Emerson Rocha Luiz</author>
+	<creationDate>Jul 2011</creationDate>
+	<copyright>Copyright (C) 2005 - 2011 Webdesign Assessoria em Tecnologia da Informacao.</copyright>
+	<license>GPL3</license>
+	<authorEmail>emerson@webdesign.eng.br</authorEmail>
+	<authorUrl>http://fititnt.org</authorUrl>
+	<version>0.1alpha</version>
+	<description>PLG_SOCIALIZEME_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="socializeme">socializeme.php</filename>
+		<filename>index.html</filename>
+		<filename>readme.txt</filename>
+		<folder>language</folder>
+	</files>
+	<languages folder="language">
+		<!--
+			these files will be installed in the administrator/language folder.
+		-->
+		<language tag="en-GB">en-GB/en-GB.plg_socializeme.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_socializeme.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+                                <field name="tagname" type="text"
+					description="PLG_SOCIALIZEME_TAGSNAME_DESC"
+					label="PLG_SOCIALIZEME_TAGSNAME_LABEL"
+                                        default="github"
+				/>
+				<field name="tagstart" type="text"
+					description="PLG_SOCIALIZEME_TAGSTART_DESC"
+					label="PLG_SOCIALIZEME_TAGSTART_LABEL"
+                                        default="&lt;pre&gt;"
+				/>
+                                <field name="tagend" type="text"
+					description="PLG_SOCIALIZEME_TAGEND_DESC"
+					label="PLG_SOCIALIZEME_TAGEND_LABEL"
+                                        default="&lt;/pre&gt;"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
