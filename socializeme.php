@@ -31,6 +31,7 @@ class plgContentSocializeme extends JPlugin
 	 */
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart)
 	{	
+            $document =& JFactory::getDocument();
             
             //Get 'Global' params
             $u =&JURI::getInstance();
@@ -38,8 +39,11 @@ class plgContentSocializeme extends JPlugin
             $buttonsstyle = new stdClass();
             $buttonsstyle->size = $this->params->get('showbuttonsbig', 1);//1 big, 0 small
             $buttonsstyle->alignment = $this->params->get('showbuttonsleft', 1);//1 left, 0 rigth
-            $buttonsstyle->showbuttonshorizoltal = $this->params->get('showbuttonshorizoltal', 1);//1 vertical, 0 horizontal
-            $buttonsstyle->showbuttonscount = $this->params->get('showbuttonscount', 1);//1 show, 0 do not show 
+            $buttonsstyle->showbuttonshorizoltal = $this->params->get('showbuttonshorizoltal', 1);//1 horizontal, 0 vertical
+            $buttonsstyle->showbuttonscount = $this->params->get('showbuttonscount', 1);//1 show, 0 do not show
+            $lang =& JFactory::getLanguage();
+            $buttonsstyle->lang = $lang->getTag();
+            $buttonsstyle->lang_ = str_replace('-', '_', $buttonsstyle->lang);
             
             if ( $this->params->get('showbuttonsafter',1) ){
                 $article->text .= $this->_getSocialButtons( $url , $buttonsstyle );
@@ -47,14 +51,14 @@ class plgContentSocializeme extends JPlugin
                 $article->text = $this->_getSocialButtons( $url , $buttonsstyle ) . $article->text;
             }
             
-            if ( $this->params->get('showfacebookcomments', 1) ){
+            if ( $this->params->get('showfacebookcomments', 1) ){                
+                $document->addScript( 'http://connect.facebook.net/'.$buttonsstyle->lang_.'/all.js#xfbml=1' );
                 $article->text .= $this->_getFacebookComment( $url );//Add after
             }
             
             // Add styles
-            $document =& JFactory::getDocument();
+
             $document->addStyleSheet( JURI::base( true ).'/plugins/content/socializeme/css/socializeme.css');
-            
             
             return;
             
@@ -80,7 +84,8 @@ class plgContentSocializeme extends JPlugin
                 $document->addScript( 'http://platform.twitter.com/widgets.js' );
                 $socializeme .= $this->_getTwitterTwitterButton($url, $buttonsstyle);
             }
-            if( $this->params->get('showfacebooklike',1) ){
+            if( $this->params->get('showfacebooklike',1) ){                
+                $document->addScript( 'http://connect.facebook.net/'.$buttonsstyle->lang_.'/all.js#xfbml=1' );
                 $socializeme .= $this->_getFacebookLike($url, $buttonsstyle);
             }
             $socializeme .= '</div>';
@@ -97,7 +102,7 @@ class plgContentSocializeme extends JPlugin
          */
         protected function _getFacebookComment($url){
            
-            $facebookComment ='<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="'.$url.'" num_posts="'.$num_posts.'" width="'.$width.'"></fb:comments>';
+            $facebookComment ='<div id="fb-root"></div><fb:comments href="'.$url.'" num_posts="'.$num_posts.'" width="'.$width.'"></fb:comments>';
             
             return $facebookComment;
             
@@ -108,7 +113,7 @@ class plgContentSocializeme extends JPlugin
          * @return      String      HTML result for add to article
          */
         protected function _getFacebookLike($url, $buttonsstyle){
-            //$facebookLike = '<div class="sm-fblike"><iframe src="http://www.facebook.com/plugins/like.php?locale=en_US&amp;href=http%3A%2F%2Fwww.fititnt.org%2Flar-doce-lar%2Fparada-tecnica.html&amp;layout=box_count&amp;show_faces=true&amp;action=like&amp;colorscheme=light" style="border:none; overflow:hidden; width: 47px; height :60px;"></iframe></div>';
+          
            $btclass = ($buttonsstyle->alignment) ? ' sml' : ' smr';
            $btclass .= ($buttonsstyle->showbuttonshorizoltal) ? 'h' : '';
            $datasize = ($buttonsstyle->size) ? 'data-size="tall"' : 'data-size="medium"';
@@ -119,12 +124,9 @@ class plgContentSocializeme extends JPlugin
                $layout = 'button_count';
            } else {
                $layout = 'standart';
-           }
-            
-            $facebookLike = '<div class="sm-fblike'.$btclass.'"><iframe seamless="seamless" src="http://www.facebook.com/plugins/like.php?locale=en_US&amp;href='.rawurlencode($url).'&amp;layout='.$layout.'&amp;show_faces=false&amp;action=like&amp;colorscheme=light"></iframe></div>';
-            
-            return $facebookLike;
-            
+           }            
+            $facebookLike = '<div class="sm-fblike'.$btclass.'"><iframe seamless="seamless" src="http://www.facebook.com/plugins/like.php?locale='.$buttonsstyle->lang_.'&amp;href='.rawurlencode($url).'&amp;layout='.$layout.'&amp;show_faces=false&amp;action=like&amp;colorscheme=light"></iframe></div>';
+            return $facebookLike;            
         }
         
         /* 
@@ -138,7 +140,7 @@ class plgContentSocializeme extends JPlugin
            $datacount = ($buttonsstyle->showbuttonscount) ? 'true' : 'false';
             
             //$googleplus = '<div class="sm-gpb'.$btclass.'"><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><div class="g-plusone" data-size="tall" data-count="true"></div></div>';
-            $googleplus = '<div class="sm-gpb'.$btclass.'"><div class="g-plusone" data-size="'.$datasize.'" data-count="'.$datacount.'"></div></div>';
+            $googleplus = '<div class="sm-gpb'.$btclass.'"><div class="g-plusone" data-size="'.$datasize.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'"></div></div>';
             return $googleplus;
             
         }
@@ -170,10 +172,9 @@ class plgContentSocializeme extends JPlugin
                 $tdata = $this->params->get('ttb-lang', NULL) . ' ';
             }
             
+            $twitterbutton = '<div class="sm-ttb'.$btclass.'"><a href="http://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'" data-via="fititnt">Twitter</a></div>';
             
-            $twitterbutton = '<div class="sm-ttb'.$btclass.'"><a href="http://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$datacount.'" data-via="fititnt">Twitter</a></div>';
-            
-            return $twitterbutton;
-            
+            return $twitterbutton;            
         }
+        
 }

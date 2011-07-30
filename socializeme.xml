@@ -7,7 +7,7 @@
     <license>GPL3</license>
     <authorEmail>emerson@webdesign.eng.br</authorEmail>
     <authorUrl>http://fititnt.org</authorUrl>
-    <version>0.2alpha</version>
+    <version>0.3alpha</version>
     <description>PLG_SOCIALIZEME_DESCRIPTION</description>
 
     <files>
@@ -15,11 +15,11 @@
         <filename>index.html</filename>
         <filename>readme.txt</filename>
         <folder>css</folder>
-        <folder>language</folder>
+        <!--<folder>language</folder>-->
     </files>
     <languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.plg_socializeme.ini</language>
-        <language tag="en-GB">en-GB/en-GB.plg_socializeme.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_socializeme.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_socializeme.sys.ini</language>
     </languages>
 
     <config>
@@ -58,29 +58,20 @@
                   <option value="0">JNO</option>
                 </field>
             </fieldset>
-            <fieldset name="FACEBOOKCOMMENTS">
+            <fieldset name="FACEBOOKCOMMENTS" description="COM_PLUGINS_FACEBOOKCOMMENTS_FIELDSET_DESC">
 
             
             </fieldset>
             
-            <fieldset name="FACEBOOKBUTTON">
+            <fieldset name="FACEBOOKBUTTON" description="COM_PLUGINS_FACEBOOKBUTTON_FIELDSET_DESC">
 
             
             </fieldset>
-            <fieldset name="GOOGLEPLUS">
+            <fieldset name="GOOGLEPLUS" descriptiob="COM_PLUGINS_GOOGLEPLUS_FIELDSET_DESC">
 
             
             </fieldset>
-            <fieldset name="TWITTERBUTTON">
-                <field name="ttb-count" 
-                        type="list" 
-                        default="vertical" 
-                        label="PLG_SOCIALIZEME_TTB_COUNT_LABEL" 
-                        description="PLG_SOCIALIZEME_TTB_COUNT_DESC">
-                  <option value="none">PLG_SOCIALIZEME_TTB_COUNT_NONE</option>
-                  <option value="horizontal">PLG_SOCIALIZEME_TTB_COUNT_HORIZONTAL</option>
-                  <option value="vertical">PLG_SOCIALIZEME_TTB_COUNT_VERTICAL</option>
-                </field>
+            <fieldset name="TWITTERBUTTON" description="COM_PLUGINS_TWITTERBUTTON_FIELDSET_DESC">
                 <field name="ttb-via" 
                         type="text" 
                         default="" 
@@ -92,16 +83,9 @@
                         default="" 
                         label="PLG_SOCIALIZEME_TTB_RELATED_LABEL" 
                         description="PLG_SOCIALIZEME_TTB_RELATED_DESC">
-                </field>
-                <field name="ttb-lang" 
-                        type="text" 
-                        default="" 
-                        label="PLG_SOCIALIZEME_TTB_LANG_LABEL" 
-                        description="PLG_SOCIALIZEME_TTB_LANG_DESC">
-                </field>
-            
+                </field>            
             </fieldset>
-            <fieldset name="VISUAL">
+            <fieldset name="VISUAL" description="COM_PLUGINS_VISUAL_FIELDSET_DESC">
                 <field name="showbuttonscount" 
                         type="radio" 
                         default="1" 
@@ -131,16 +115,16 @@
                         default="1" 
                         label="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_LABEL" 
                         description="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_DESC">
-                  <option value="1">JYES</option>
-                  <option value="0">JNO</option>
+                  <option value="1">PLG_SOCIALIZEME_SHOWBUTTONSLEFT_LEFT</option>
+                  <option value="0">PLG_SOCIALIZEME_SHOWBUTTONSLEFT_RIGHT</option>
                 </field>
                 <field name="showbuttonshorizoltal" 
                         type="radio" 
                         default="1" 
                         label="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_LABEL" 
                         description="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_DESC">
-                  <option value="1">JYES</option>
-                  <option value="0">JNO</option>
+                  <option value="1">PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_HORIZONTAL</option>
+                  <option value="0">PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_VERTICAL</option>
                 </field>
             </fieldset>
         </fields>
