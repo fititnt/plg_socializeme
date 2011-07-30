@@ -1,0 +1,73 @@
+.socializeme{
+    clear: both; margin:10px; height:62px;
+}
+.socializeme-small{
+    clear: both; margin:10px; height:35px;
+}
+.socializeme > .sml, .socializeme > .smr, .socializeme > .smlh, .socializeme > .smrh {
+   border: none; width: 55px; text-align: center; 
+}
+.socializeme-small > .sm-fblike{
+    width: 255px;
+}
+.socializeme-small > .sm-gpb{
+    width: 55px;
+}
+.socializeme-small > .sm-ttb{
+    width: 95px;
+}
+.socializeme > .smlh, .socializeme-small > .smlh {
+     margin-left: 10px; float: left; 
+}
+.socializeme > .smrh, .socializeme-small > .smrh {
+     margin-right: 10px; float: right;
+}
+.socializeme iframe, .socializeme-small iframe{
+    border:none; overflow:hidden; width:100%; height:100%; width: 55px; text-align: center;
+}
+
+/*
+.socializeme .sm-fblike{
+    width: 55px; text-align: center;
+}
+.socializeme .sm-gpb{
+    width: 59px !important; text-align: center;
+}
+.socializeme .sm-ttb{
+    width: 55px !important;text-align: center;
+}
+*/
+/*
+.socializeme-r .sm-fblike{
+    width: 60px !important;
+}
+.socializeme-r .sm-gpb{
+    width: 50px !important;
+}
+.socializeme-r .sm-ttb{
+    width: 55px !important;
+}
+*/
+/*
+
+.socializeme .sm-fblike{
+    width: 60px; margin-left: 10px; float: left;
+}
+.socializeme .sm-gpb{
+    width: 60px !important; margin-left: 10px; border: none; float: left; 
+}
+.socializeme .sm-ttb{
+    width: 55px !important; float: left;
+}
+
+.socializeme-r .sm-fblike{
+    width: 60px !important; margin-right: 10px;  float: right;
+}
+.socializeme-r .sm-gpb{
+    width: 60px !important; margin-right: 10px; float: right; 
+}
+.socializeme-r .sm-ttb{
+    width: 55px !important; margin-right: 10px; float: right;
+}
+
+*/
