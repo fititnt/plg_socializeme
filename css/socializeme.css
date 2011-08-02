@@ -1,73 +1,24 @@
-.socializeme{
-    clear: both; margin:10px; height:62px;
+div[class^=socializeme] {
+    margin: 5px; height:62px; float:left; display:block;
 }
-.socializeme-small{
-    clear: both; margin:10px; height:35px;
+div[class^=socializeme-r], div[class^=socializeme-small-r]{
+    float:right !important;
 }
-.socializeme > .sml, .socializeme > .smr, .socializeme > .smlh, .socializeme > .smrh {
-   border: none; width: 55px; text-align: center; 
+div.socializeme-l-v > div, div.socializeme-r-v > div{
+    display:block; 
 }
-.socializeme-small > .sm-fblike{
-    width: 255px;
+div.socializeme-r, div.socializeme-small-r {
+    float:right;
 }
-.socializeme-small > .sm-gpb{
-    width: 55px;
+div.socializeme-r, div.socializeme-small-r {
+    float:right;
 }
-.socializeme-small > .sm-ttb{
-    width: 95px;
+div.socializeme-r-v , div.socializeme-l-v{
+    height:200px;
 }
-.socializeme > .smlh, .socializeme-small > .smlh {
-     margin-left: 10px; float: left; 
+div[class^=socializeme] > div{
+    margin: 5px; float:none;
 }
-.socializeme > .smrh, .socializeme-small > .smrh {
-     margin-right: 10px; float: right;
+div[class^=socializeme] iframe{
+    height:62px; width: 55px; overflow: hidden;
 }
-.socializeme iframe, .socializeme-small iframe{
-    border:none; overflow:hidden; width:100%; height:100%; width: 55px; text-align: center;
-}
-
-/*
-.socializeme .sm-fblike{
-    width: 55px; text-align: center;
-}
-.socializeme .sm-gpb{
-    width: 59px !important; text-align: center;
-}
-.socializeme .sm-ttb{
-    width: 55px !important;text-align: center;
-}
-*/
-/*
-.socializeme-r .sm-fblike{
-    width: 60px !important;
-}
-.socializeme-r .sm-gpb{
-    width: 50px !important;
-}
-.socializeme-r .sm-ttb{
-    width: 55px !important;
-}
-*/
-/*
-
-.socializeme .sm-fblike{
-    width: 60px; margin-left: 10px; float: left;
-}
-.socializeme .sm-gpb{
-    width: 60px !important; margin-left: 10px; border: none; float: left; 
-}
-.socializeme .sm-ttb{
-    width: 55px !important; float: left;
-}
-
-.socializeme-r .sm-fblike{
-    width: 60px !important; margin-right: 10px;  float: right;
-}
-.socializeme-r .sm-gpb{
-    width: 60px !important; margin-right: 10px; float: right; 
-}
-.socializeme-r .sm-ttb{
-    width: 55px !important; margin-right: 10px; float: right;
-}
-
-*/

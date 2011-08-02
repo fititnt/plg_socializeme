@@ -73,6 +73,8 @@ class plgContentSocializeme extends JPlugin
             $document =& JFactory::getDocument();
 
             $socializemeMainClass = ( $buttonsstyle->size ) ? 'socializeme' : 'socializeme-small';
+            $socializemeMainClass .= ( $buttonsstyle->alignment ) ? '-l' : '-r';
+            $socializemeMainClass .= ( $buttonsstyle->showbuttonshorizoltal ) ? '-h' : '-v';
             
             $socializeme .= '<div class="'.$socializemeMainClass.'">';
             
@@ -114,8 +116,6 @@ class plgContentSocializeme extends JPlugin
          */
         protected function _getFacebookLike($url, $buttonsstyle){
           
-           $btclass = ($buttonsstyle->alignment) ? ' sml' : ' smr';
-           $btclass .= ($buttonsstyle->showbuttonshorizoltal) ? 'h' : '';
            $datasize = ($buttonsstyle->size) ? 'data-size="tall"' : 'data-size="medium"';
            //$datacount = ($buttonsstyle->showbuttonscount) ? 'data-count="true"' : 'data-count="false"';
            if( $buttonsstyle->size == 1 && $buttonsstyle->showbuttonscount == 1 ){
@@ -125,7 +125,7 @@ class plgContentSocializeme extends JPlugin
            } else {
                $layout = 'standart';
            }            
-            $facebookLike = '<div class="sm-fblike'.$btclass.'"><iframe seamless="seamless" src="http://www.facebook.com/plugins/like.php?locale='.$buttonsstyle->lang_.'&amp;href='.rawurlencode($url).'&amp;layout='.$layout.'&amp;show_faces=false&amp;action=like&amp;colorscheme=light"></iframe></div>';
+            $facebookLike = '<div class="sm-fblike"><iframe src="http://www.facebook.com/plugins/like.php?locale='.$buttonsstyle->lang_.'&amp;href='.rawurlencode($url).'&amp;layout='.$layout.'&amp;show_faces=false&amp;action=like&amp;colorscheme=light"></iframe></div>';
             return $facebookLike;            
         }
         
@@ -134,13 +134,11 @@ class plgContentSocializeme extends JPlugin
          * @return      String      HTML result for add to article
          */
         protected function _getGooglePlus($url, $buttonsstyle){
-           $btclass = ($buttonsstyle->alignment) ? ' sml' : ' smr';
-           $btclass .= ($buttonsstyle->showbuttonshorizoltal) ? 'h' : '';
-           $datasize = ($buttonsstyle->size) ? 'tall"' : 'medium';
+           $datasize = ($buttonsstyle->size) ? 'tall' : 'medium';
            $datacount = ($buttonsstyle->showbuttonscount) ? 'true' : 'false';
             
             //$googleplus = '<div class="sm-gpb'.$btclass.'"><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><div class="g-plusone" data-size="tall" data-count="true"></div></div>';
-            $googleplus = '<div class="sm-gpb'.$btclass.'"><div class="g-plusone" data-size="'.$datasize.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'"></div></div>';
+            $googleplus = '<div class="sm-gpb"><div class="g-plusone" data-size="'.$datasize.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'"></div></div>';
             return $googleplus;
             
         }
@@ -151,8 +149,6 @@ class plgContentSocializeme extends JPlugin
          */
         protected function _getTwitterTwitterButton($url, $buttonsstyle){
            $tdata = '';
-           $btclass = ($buttonsstyle->alignment) ? ' sml' : ' smr';
-           $btclass .= ($buttonsstyle->showbuttonshorizoltal) ? 'h' : '';
            
            if( $buttonsstyle->size == 1 && $buttonsstyle->showbuttonscount == 1 ){
                $datacount = 'vertical';
@@ -172,7 +168,7 @@ class plgContentSocializeme extends JPlugin
                 $tdata = $this->params->get('ttb-lang', NULL) . ' ';
             }
             
-            $twitterbutton = '<div class="sm-ttb'.$btclass.'"><a href="http://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'" data-via="fititnt">Twitter</a></div>';
+            $twitterbutton = '<div class="sm-ttb"><a href="http://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$datacount.'" data-lang="'.$buttonsstyle->lang.'" data-via="fititnt">Twitter</a></div>';
             
             return $twitterbutton;            
         }

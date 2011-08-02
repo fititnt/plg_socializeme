@@ -6,13 +6,21 @@ Author: Emerson Rocha Luiz - @fititnt - emerson@webdesign.eng.br
 ------- Basic usage -------
 
 ------- Important -------
+For now, this plugin was tested for big icons and with count
+
 
 -------   @todo   -------
-
+1.0beta1:
+-> Need more test and some rewrite for
+    - Small icons
+    - Do not show count
+-> Need test and improve facebook comment
 
 ------- Changelog -------
 
-
+2011-08-02: 1.0beta1
+-Change on classes used
+-Changes on external css file
 
 2011-07-29: 0.1alpha
 - Start. Based on plg_getgithubcode
