@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.6" type="plugin" group="content" method="upgrade">
+<extension 
+    version="1.6" 
+    type="plugin" 
+    group="content" 
+    method="upgrade"
+    >
     <name>PLG_SOCIALIZEME</name>
     <author>Emerson Rocha Luiz</author>
     <creationDate>2011-07-29</creationDate>
@@ -14,8 +19,9 @@
         <filename plugin="socializeme">socializeme.php</filename>
         <filename>index.html</filename>
         <filename>readme.txt</filename>
+        <filename>license.txt</filename>
         <folder>css</folder>
-        <!--<folder>language</folder>-->
+        <folder>language</folder>
     </files>
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.plg_content_socializeme.ini</language>
@@ -25,104 +31,135 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field name="showfacebookcomments" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWFACEBOOKCOMMENT_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWFACEBOOKCOMMENT_DESC">
+                <field 
+                    name="showfacebookcomments" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWFACEBOOKCOMMENT_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWFACEBOOKCOMMENT_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showfacebooklike" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWFACEBOOKLIKE_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWFACEBOOKLIKE_DESC">
+                <field 
+                    name="showfacebooklike" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWFACEBOOKLIKE_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWFACEBOOKLIKE_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showgoogleplus" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWGOOGLEPLUS_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWGOOGLEPLUS_DESC">
+                <field 
+                    name="showgoogleplus" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWGOOGLEPLUS_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWGOOGLEPLUS_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showtwittertweet" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWTWITTERTWEET_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWTWITTERTWEET_DESC">
+                <field 
+                    name="showtwittertweet" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWTWITTERTWEET_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWTWITTERTWEET_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
             </fieldset>
-            <fieldset name="FACEBOOKCOMMENTS" description="COM_PLUGINS_FACEBOOKCOMMENTS_FIELDSET_DESC">
-
-            
+            <fieldset 
+                name="FACEBOOKCOMMENTS" 
+                description="COM_PLUGINS_FACEBOOKCOMMENTS_FIELDSET_DESC"
+                >
             </fieldset>
             
-            <fieldset name="FACEBOOKBUTTON" description="COM_PLUGINS_FACEBOOKBUTTON_FIELDSET_DESC">
-
-            
+            <fieldset 
+                name="FACEBOOKBUTTON" 
+                description="COM_PLUGINS_FACEBOOKBUTTON_FIELDSET_DESC"
+                >            
             </fieldset>
-            <fieldset name="GOOGLEPLUS" descriptiob="COM_PLUGINS_GOOGLEPLUS_FIELDSET_DESC">
-
             
+            <fieldset 
+                name="GOOGLEPLUS" 
+                descriptiob="COM_PLUGINS_GOOGLEPLUS_FIELDSET_DESC"
+                >            
             </fieldset>
-            <fieldset name="TWITTERBUTTON" description="COM_PLUGINS_TWITTERBUTTON_FIELDSET_DESC">
-                <field name="ttb-via" 
-                        type="text" 
-                        default="" 
-                        label="PLG_SOCIALIZEME_TTB_VIA_LABEL" 
-                        description="PLG_SOCIALIZEME_TTB_VIA_DESC">
+            
+            <fieldset 
+                name="TWITTERBUTTON" 
+                description="COM_PLUGINS_TWITTERBUTTON_FIELDSET_DESC"
+                >
+                <field 
+                    name="ttb-via" 
+                    type="text" 
+                    default="" 
+                    label="PLG_SOCIALIZEME_TTB_VIA_LABEL" 
+                    description="PLG_SOCIALIZEME_TTB_VIA_DESC">
                 </field>
-                <field name="ttb-related" 
-                        type="text" 
-                        default="" 
-                        label="PLG_SOCIALIZEME_TTB_RELATED_LABEL" 
-                        description="PLG_SOCIALIZEME_TTB_RELATED_DESC">
+                <field 
+                    name="ttb-related" 
+                    type="text" 
+                    default="" 
+                    label="PLG_SOCIALIZEME_TTB_RELATED_LABEL" 
+                    description="PLG_SOCIALIZEME_TTB_RELATED_DESC">
                 </field>            
             </fieldset>
-            <fieldset name="VISUAL" description="COM_PLUGINS_VISUAL_FIELDSET_DESC">
-                <field name="showbuttonscount" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWBUTTONSCOUNT_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWBUTTONSCOUNT_DESC">
+            <fieldset 
+                name="VISUAL" 
+                description="COM_PLUGINS_VISUAL_FIELDSET_DESC"
+                >
+                <field 
+                    name="showbuttonscount" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWBUTTONSCOUNT_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWBUTTONSCOUNT_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showbuttonsbig" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWBUTTONSBIG_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWBUTTONSBIG_DESC">
+                <field 
+                    name="showbuttonsbig" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWBUTTONSBIG_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWBUTTONSBIG_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showbuttonsafter" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWBUTTONSAFTER_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWBUTTONSAFTER_DESC">
+                <field 
+                    name="showbuttonsafter" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWBUTTONSAFTER_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWBUTTONSAFTER_DESC"
+                    >
                   <option value="1">JYES</option>
                   <option value="0">JNO</option>
                 </field>
-                <field name="showbuttonsleft" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_DESC">
+                <field 
+                    name="showbuttonsleft" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWBUTTONSLEFT_DESC"
+                    >
                   <option value="1">PLG_SOCIALIZEME_SHOWBUTTONSLEFT_LEFT</option>
                   <option value="0">PLG_SOCIALIZEME_SHOWBUTTONSLEFT_RIGHT</option>
                 </field>
-                <field name="showbuttonshorizoltal" 
-                        type="radio" 
-                        default="1" 
-                        label="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_LABEL" 
-                        description="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_DESC">
+                <field 
+                    name="showbuttonshorizoltal" 
+                    type="radio" 
+                    default="1" 
+                    label="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_LABEL" 
+                    description="PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_DESC"
+                    >
                   <option value="1">PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_HORIZONTAL</option>
                   <option value="0">PLG_SOCIALIZEME_SHOWBUTTONSHORIZOLTAL_VERTICAL</option>
                 </field>
